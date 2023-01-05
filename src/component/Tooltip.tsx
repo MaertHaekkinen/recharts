@@ -124,7 +124,8 @@ export class Tooltip<TValue extends ValueType, TName extends NameType> extends P
     dismissedAtCoordinate: { x: 0, y: 0 },
   };
 
-  private wrapperNode: HTMLDivElement;
+  private 
+  : HTMLDivElement;
 
   componentDidMount() {
     this.updateBBox();
@@ -136,7 +137,7 @@ export class Tooltip<TValue extends ValueType, TName extends NameType> extends P
 
   updateBBox() {
     const { boxWidth, boxHeight, dismissed } = this.state;
-    if (dismissed) {
+    if (this.wrapperNode && dismissed) {
       this.wrapperNode.blur();
       if (
         this.props.coordinate.x !== this.state.dismissedAtCoordinate.x ||
@@ -144,7 +145,7 @@ export class Tooltip<TValue extends ValueType, TName extends NameType> extends P
       ) {
         this.setState({ dismissed: false });
       }
-    } else {
+    } else if (this.wrapperNode) {
       this.wrapperNode.focus({ preventScroll: true });
     }
 
